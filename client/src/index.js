@@ -15,6 +15,7 @@ import CategoryPosts from './pages/CategoryPosts';
 import AuthorPosts from './pages/AuthorPosts';
 import Dashboard from './pages/Dashboard';
 import EditPosts from './pages/EditPosts';
+import DeletePosts from './pages/DeletePosts';
 import Logout from './pages/Logout';
 
 
@@ -38,6 +39,7 @@ children: [
   {path: "posts/users/:id", element: <AuthorPosts />},
   {path: "myposts/:id", element: <Dashboard />},
   {path: "posts/:id/edit", element: <EditPosts />},
+  {path: "posts/:id/delete", element: <DeletePosts />},
   {path: "logout", element: <Logout />},
 
 ]

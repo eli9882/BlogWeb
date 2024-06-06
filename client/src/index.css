@@ -357,6 +357,13 @@ input,select,textarea{
 .register small a, .login small a{
     color: var(--color-primary);
 }
+
+/* custom style for react quill*/
+.ql-editor{
+    overflow: scroll;
+    background: var(--color-white);
+    height: 8rem;
+}
 /*===Authors===*/
 
 .authors_container{
@@ -485,3 +492,4 @@ input,select,textarea{
     display: flex;
     gap: 1rem;
 }
+

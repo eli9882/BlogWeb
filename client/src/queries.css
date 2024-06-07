@@ -1,0 +1,147 @@
+:root {
+    --color-primary: #6f6af8;
+    --color-white: #fff;
+    --color-red: rgb(255, 63, 63);
+    --color-gray-100: hsl(220, 20%, 10%, 5%);
+    --color-gray-200: hsl(220, 20%, 10%, 10%);
+    --color-gray-300: hsl(220, 20%, 10%, 25%);
+    --color-gray-500: hsl(220, 20%, 10%, 50%);
+    --color-gray-700: #252542;
+    --color-gray-900: #0c0c22;
+    --color-bg: hwb(240 95% 0%);
+    --transition: all 300ms ease;
+    --container-width-lg: 84%;
+    --container-width-md: 92%;
+    --form-width: 50%;
+    --radius-1: 0.3rem;
+    --radius-2: 0.6rem;
+    --radius-3: 1rem;
+    --radius-4: 2rem;
+}
+
+@media screen and (max-width: 800px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.35rem;
+    }
+
+    .container {
+        width: var(--container-width-md);
+    }
+
+    /* NAVBAR */
+    .nav_container {
+       position: relative;
+        
+    }
+
+    .nav_menu {
+        position: absolute;
+        top: 5rem;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        display: none;
+        opacity: 0;
+        transform: rotateX(90deg);
+        transform-origin: top;
+        transition: opacity 500ms ease, transform 500ms ease;
+    }
+
+    .nav_menu.show {
+        display: flex;
+        opacity: 1;
+        transform: rotateX(0);
+    }
+
+    .nav_menu li {
+        width: 100%;
+        box-shadow: -2rem 4rem 4rem rgba(0, 0, 0, 0.26);
+        opacity: 0;
+        transform: rotateX(90deg);
+        transform-origin: top;
+    }
+
+    .nav_menu.show li {
+        animation: dropDown 500ms ease forwards;
+    }
+
+    @keyframes dropDown {
+        to {
+            opacity: 1;
+            transform: rotateX(0);
+        }
+    }
+
+    .nav_menu.show li:nth-child(2) {
+        animation-delay: 300ms;
+    }
+
+    .nav_menu.show li:nth-child(3) {
+        animation-delay: 600ms;
+    }
+
+    .nav_menu.show li:nth-child(4) {
+        animation-delay: 900ms;
+    }
+
+    .nav_menu li a {
+        display: block;
+        background: var(--color-white);
+        padding: 0.85rem 2.5rem;
+    }
+
+    .nav_toggle-btn {
+        display: inline-block;
+        background: transparent;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .posts_container{
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+
+    }
+
+    .footer_categories{
+       flex-direction: column; 
+    }
+    .post-detail{
+        width: 100%;
+        background: transparent;
+        padding: 0;
+    }
+    
+
+    .register, .login, .create-post{
+        width: 100%;
+    }
+    .form.profile_form{
+        margin-top: 2.5rem;
+        width: 100%;
+    }
+
+    .authors_container{
+        grid-template-columns: 1fr;
+        gap: 1.2rem
+    }
+
+    .dashboard_post{
+        flex-direction: column;
+    }
+    .dashboard_post-info{
+        gap: 1.5rem;
+
+    }
+    .dashboard_post-thumbnail{
+        width: 5rem;
+    }
+}

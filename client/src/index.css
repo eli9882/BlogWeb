@@ -148,7 +148,7 @@ section{
 /*===NAVBAR===*/
 
 nav{
-    width: 100%;
+    width: 100vw;
     height: 5rem;
     display: grid;
     place-items: center;
@@ -492,4 +492,5 @@ input,select,textarea{
     display: flex;
     gap: 1rem;
 }
+
 

@@ -154,7 +154,41 @@ const editPost = async (req, res, next) => {
 // DELETE : api/posts/:id
 //PROTECTED
 const deletePost = async (req, res, next) => {
-    res.json("Delete post")
+    try {
+        const postId = req.params.id;
+        if (!postId) {
+            return next(new HttpError("Post unavailable.", 400));
+        }
+
+        const post = await Post.findById(postId);
+        if (!post) {
+            return next(new HttpError("Post not found.", 404));
+        }
+
+        if (req.user.id !== post.creator.toString()) {
+            return next(new HttpError("You do not have permission to delete this post.", 403));
+        }
+
+        const fileName = post.thumbnail;
+        fs.unlink(Path.join(__dirname, '..', 'uploads', fileName), async (err) => {
+            if (err) {
+                return next(new HttpError("Error deleting thumbnail.", 500));
+            }
+
+            await Post.findByIdAndDelete(postId);
+
+            // Find user and reduce post count by 1
+            const currentUser = await User.findById(req.user.id);
+            if (currentUser) {
+                const userPostCount = currentUser.posts - 1;
+                await User.findByIdAndUpdate(req.user.id, { posts: userPostCount });
+            }
+
+            res.json({ message: `Post ${postId} deleted successfully.` });
+        });
+    } catch (error) {
+        return next(new HttpError(error));
+    }
 }
 
 module.exports = { createPost, getPosts, getPost, getCatPosts, getUserPost, editPost, deletePost }
